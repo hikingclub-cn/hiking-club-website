@@ -1,19 +1,19 @@
-name: Debug Secret
+name: Sync to Fork
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  debug:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Check secret length
-        env:
-          TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
-        run: |
-          echo "Token length: ${#TOKEN}"
-          if [ -z "$TOKEN" ]; then
-            echo "❌ Token is empty!"
-          else
-            echo "✅ Token exists"
-            echo "Token starts with: ${TOKEN:0:4}..."
-          fi
+      - name: Sync fork
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "hiking-club/hiking-club-website"
+          source_branch: "main"
+          destination_repo: "lizheyong/hiking-club-website"
+          destination_branch: "main"
+          github_token: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
