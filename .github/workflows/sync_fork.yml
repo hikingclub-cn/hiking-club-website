@@ -1,21 +1,19 @@
-name: Sync to Fork
+name: Debug Secret
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
-  sync:
+  debug:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-      - name: Sync to personal fork
+      - name: Check secret length
+        env:
+          TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
         run: |
-          git config --global user.name "hiking-club-bot"
-          git config --global user.email "bot@hiking-club.com"
-          git push "https://${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}@github.com/lizheyong/hiking-club-website.git" main:main --force
+          echo "Token length: ${#TOKEN}"
+          if [ -z "$TOKEN" ]; then
+            echo "❌ Token is empty!"
+          else
+            echo "✅ Token exists"
+            echo "Token starts with: ${TOKEN:0:4}..."
+          fi
