@@ -1,21 +1,20 @@
 name: Sync to Fork
-
 on:
   push:
     branches:
       - main
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout upstream
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0  # 获取完整历史
+          
       - name: Push to fork
         run: |
           git config --global user.name "sync-bot"
           git config --global user.email "bot@example.com"
-
           git remote add fork https://x-access-token:${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}@github.com/lizheyong/hiking-club-website.git
-          git push -f fork main
+          git push fork main --force
