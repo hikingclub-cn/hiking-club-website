@@ -40,6 +40,7 @@ export default {
     footer: {
       message: 'Built with ❤️ for outdoor enthusiasts',
       copyright: 'Copyright © 2024 Hiking Club'
-    }
+    },
+    cleanUrls: true
   }
 }
