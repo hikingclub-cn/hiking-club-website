@@ -1,4 +1,4 @@
-name: Sync to Fork
+name: Sync Fork
 on:
   push:
     branches:
@@ -9,20 +9,17 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Sync fork
-        env:
-          GITHUB_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
-        run: |
-          # 直接使用 GitHub API 创建或更新引用
-          LATEST_SHA=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            https://api.github.com/repos/hiking-club/hiking-club-website/git/refs/heads/main \
-            | jq -r '.object.sha')
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          repository: hiking-club/hiking-club-website
+          ref: main
+          fetch-depth: 0
           
-          echo "Latest SHA: $LATEST_SHA"
-          
-          # 更新 fork 的 main 分支引用
-          curl -X PATCH \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/lizheyong/hiking-club-website/git/refs/heads/main \
-            -d "{\"sha\":\"$LATEST_SHA\",\"force\":true}"
+      - name: Push to fork
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
+          repository: lizheyong/hiking-club-website
+          branch: main
+          force: true
