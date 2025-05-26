@@ -14,11 +14,12 @@ jobs:
 
       - name: Push to fork
         env:
-          FORK_REPO: lizheyong/hiking-club-website  # 改成你自己的 Fork
+          FORK_REPO: lizheyong/hiking-club-website
           TARGET_BRANCH: main
           GH_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
         run: |
           git config --global user.name "sync-bot"
           git config --global user.email "bot@example.com"
           git remote add fork https://x-access-token:${GH_TOKEN}@github.com/${FORK_REPO}.git
+          git fetch fork || true
           git push -f fork $TARGET_BRANCH
