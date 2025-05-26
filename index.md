@@ -46,3 +46,4 @@ Hiking Club 是一个专业的户外活动组织平台，致力于为户外爱�
 - 📧 Email: pcwen@ucdavis.edu
 - 🐙 小红书: [Hiking Club Organization](https://www.xiaohongshu.com)
 - 🌐 抖音:https://www.douyin.com
+- 推特:https://www.x.com
