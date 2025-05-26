@@ -14,10 +14,8 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Push to fork
-        env:
-          GITHUB_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
+      - name: Sync to personal fork
         run: |
-          git config --global user.name "sync-bot"
-          git config --global user.email "sync-bot@hiking-club.com"
-          git push https://$GITHUB_TOKEN@github.com/lizheyong/hiking-club-website.git HEAD:main --force
+          git config --global user.name "hiking-club-bot"
+          git config --global user.email "bot@hiking-club.com"
+          git push "https://${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}@github.com/lizheyong/hiking-club-website.git" main:main --force
