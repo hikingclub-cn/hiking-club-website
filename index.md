@@ -43,6 +43,6 @@ Hiking Club 是一个专业的户外活动组织平台，致力于为户外爱�
 
 ## 联系我们
 
-- 📧 Email: contact@hiking-club.com
-- 🐙 GitHub: [Hiking Club Organization](https://github.com/hiking-club)
-- 🌐 Website: www.hiking-club.comaaaaaa
+- 📧 Email: pcwen@ucdavis.edu
+- 🐙 小红书: [Hiking Club Organization](https://www.xiaohongshu.com)
+- 🌐 抖音:https://www.douyin.com
