@@ -13,12 +13,15 @@ jobs:
       - name: Checkout upstream
         uses: actions/checkout@v4
 
-      - name: Sync to Fork
+      - name: Push to fork
         env:
-          GH_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
+          GH_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN }}
         run: |
           git config --global user.name "sync-bot"
           git config --global user.email "bot@example.com"
+          
+          echo "Verifying token is injected..."
+          echo "GH_TOKEN starts with: ${GH_TOKEN:0:4}"  # 可选，验证是否非空
 
           git remote add fork https://x-access-token:${GH_TOKEN}@github.com/lizheyong/hiking-club-website.git
           git push -f fork main
