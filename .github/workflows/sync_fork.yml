@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.name "lizheyong"
           git config --global user.email "740967133@mail.nwpu.edu.cn"
-          
+          git config --unset-all http.https://github.com/.extraheader || true
           echo "Verifying token is injected..."
           echo "GH_TOKEN starts with: ${GH_TOKEN:0:4}"  # 可选，验证是否非空
 
