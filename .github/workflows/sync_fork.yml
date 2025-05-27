@@ -15,7 +15,7 @@ jobs:
 
       - name: Push to fork
         env:
-          GH_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN }}
+          GH_TOKEN: ${{ secrets.PUSH_TO_FORK_TOKEN_WEBSITE }}
         run: |
           git config --global user.name "sync-bot"
           git config --global user.email "bot@example.com"
